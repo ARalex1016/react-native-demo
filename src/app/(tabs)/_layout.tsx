@@ -1,6 +1,12 @@
+import { useAuth } from "@clerk/expo";
 import clsx from "clsx";
-import { Tabs } from "expo-router";
-import { Image, ImageSourcePropType, View } from "react-native";
+import { Redirect, Tabs } from "expo-router";
+import {
+  ActivityIndicator,
+  Image,
+  ImageSourcePropType,
+  View,
+} from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { tabs } from "../../../constants/data";
 import { colors, components } from "../../../constants/theme";
@@ -11,34 +17,21 @@ type TabIconProps = {
   title: string;
 };
 
-// const TabLayout = () => (
-//   <NativeTabs>
-//     <NativeTabs.Trigger name="index">
-//       <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
-//       <NativeTabs.Trigger.Icon sf="house.fill" md="home" />
-//     </NativeTabs.Trigger>
-
-//     <NativeTabs.Trigger name="insights">
-//       <NativeTabs.Trigger.Label>Insights</NativeTabs.Trigger.Label>
-//       <NativeTabs.Trigger.Icon sf="eye" md="eye_tracking" />
-//     </NativeTabs.Trigger>
-
-//     <NativeTabs.Trigger name="settings">
-//       <NativeTabs.Trigger.Label>Settings</NativeTabs.Trigger.Label>
-//       <NativeTabs.Trigger.Icon sf="gear" md="settings" />
-//     </NativeTabs.Trigger>
-
-//     <NativeTabs.Trigger name="subscriptions">
-//       <NativeTabs.Trigger.Label>Subscriptions</NativeTabs.Trigger.Label>
-//       <NativeTabs.Trigger.Icon sf="wallet.pass" md="wallet" />
-//     </NativeTabs.Trigger>
-//   </NativeTabs>
-// );
-
 const tabBar = components.tabBar;
 
 const TabLayout = () => {
+  const { isLoaded, isSignedIn } = useAuth();
   const insets = useSafeAreaInsets();
+
+  if (!isLoaded) {
+    return (
+      <View className="flex-1 items-center justify-center bg-background">
+        <ActivityIndicator color="#ea7a53" />
+      </View>
+    );
+  }
+
+  if (!isSignedIn) return <Redirect href="/(auth)/sign-in" />;
 
   const TabIcon = ({ focused, icon, title }: TabIconProps) => {
     return (

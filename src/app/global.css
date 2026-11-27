@@ -251,7 +251,7 @@
   }
 
   .auth-logo-mark {
-    @apply relative size-14 items-center justify-center rounded-2xl bg-accent;
+    @apply relative size-14 items-center justify-center rounded-bl-2xl rounded-tr-2xl bg-accent;
   }
 
   .auth-logo-mark-text {
@@ -283,7 +283,7 @@
   }
 
   .auth-field {
-    @apply gap-2;
+    @apply w-full gap-1;
   }
 
   .auth-label {
@@ -291,7 +291,7 @@
   }
 
   .auth-input {
-    @apply rounded-2xl border border-border bg-background px-4 py-4 text-base font-sans-medium text-primary;
+    @apply min-h-14 rounded-2xl border border-black/20 bg-background pl-3 py-4 text-base font-sans-medium text-primary;
   }
 
   .auth-input-error {
@@ -315,7 +315,7 @@
   }
 
   .auth-button-text {
-    @apply text-base font-sans-bold text-primary;
+    @apply text-base font-sans-bold text-white;
   }
 
   .auth-secondary-button {
@@ -339,7 +339,7 @@
   }
 
   .auth-link-row {
-    @apply mt-5 flex-row items-center justify-center gap-1;
+    @apply mt-3 flex-row items-center justify-center gap-1;
   }
 
   .auth-link-copy {
@@ -348,6 +348,30 @@
 
   .auth-link {
     @apply text-sm font-sans-bold text-accent;
+  }
+
+  .auth-code-input {
+    @apply text-center text-xl font-sans-bold tracking-[8px];
+  }
+
+  .auth-password-row {
+    @apply relative w-full justify-center;
+  }
+
+  .auth-toggle {
+    @apply px-2 py-2;
+  }
+
+  .auth-toggle-text {
+    @apply text-xs font-sans-bold text-accent;
+  }
+
+  .auth-status {
+    @apply rounded-2xl bg-muted px-4 py-3 text-sm font-sans-medium text-primary;
+  }
+
+  .auth-footer-note {
+    @apply mt-3 text-center text-xs font-sans-medium text-muted-foreground;
   }
 
   .modal-overlay {
